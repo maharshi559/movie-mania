@@ -2,12 +2,12 @@
   "gameCategory": [
     {
       "name": "Dumb Charades",
-      "label": "Autem quia sit rem sed et pariatur soluta. Voluptates nemo et cum. Facilis unde eum maiores. Et ex temporibus. Et et deserunt.",
+      "label": "../assets/images/dumb-charades.png",
       "games": [
         {
           "name": "Frederik Wolff",
           "label": "Sit nesciunt quibusdam ut quibusdam quaerat dolorem temporibus. Veritatis facilis et quis. Nisi natus est maxime dolor porro beatae. Eum et ipsum explicabo et. Aut iusto nemo deserunt sint sed.",
-          "image": "Maxime molestiae ut velit assumenda debitis. Amet nisi debitis a vel et cum repellat deserunt beatae. Impedit necessitatibus molestias possimus delectus ut enim. Nemo et sint est.",
+          "image": "../assets/images/quizz.png",
           "routePath": "aut"
         },
         {
@@ -38,7 +38,7 @@
     },
     {
       "name": "Quizzes",
-      "label": "Quibusdam odit ut est id veritatis pariatur similique earum minima. Quasi explicabo nemo voluptatem. Eos officia ut eius cum ab. Voluptas maxime veniam consequatur laborum omnis quia debitis ut.\n \rDolorem et vitae voluptatem non in veniam architecto. Qui dignissimos consequatur explicabo aliquid ut eum est. Cupiditate id voluptas quia maiores facilis perferendis itaque modi eos.\n \rFugiat rem qui ut debitis molestiae quam. Temporibus unde expedita enim neque nobis. Id excepturi commodi provident ipsa impedit hic. Quae id tenetur tempore accusantium nihil et. Facilis est laboriosam ut voluptatem velit quos eligendi dolorum impedit.",
+      "label": "../assets/images/quizz.png",
       "games": [
         {
           "name": "Erna Upton",
@@ -104,7 +104,7 @@
     },
     {
       "name": "Karaoke",
-      "label": "Placeat voluptas consequatur necessitatibus sit mollitia saepe pariatur.",
+      "label": "../assets/images/mic.png",
       "games": [
         {
           "name": "Billie Kshlerin",

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Dimensions,
   Pressable,
   SafeAreaView,
   StyleSheet,
@@ -9,42 +8,32 @@ import {
 import { Text, View } from "./Themed";
 import { ScrollView } from "react-native-gesture-handler";
 import { GameCategory } from "../models/game";
-import { themeColors } from "../app/theme";
 
-export default function Pills(props: {
-  data: GameCategory[];
-  onPressed: Function;
-}) {
+export default function Pills(props: { data: GameCategory[] }) {
   const [game, setGame] = useState(props.data[0]);
-  const { width, height } = Dimensions.get("window");
 
   return (
     <SafeAreaView>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={{ width: width }}
-      >
-        {props.data.map((pill: GameCategory) => {
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {props.data.map((card) => {
           return (
             <Pressable
-              onPressIn={() => {
-                setGame(pill), props.onPressed(pill);
-              }}
+              onPress={() => setGame(card)}
+              key={card.name}
               className={
-                game.name === pill.name
-                  ? "bg-amber-50 rounded-full my-2 p-2 px-6 mr-2 shadow"
-                  : "bg-amber-800 rounded-full my-2 p-2 px-6 mr-2 shadow"
+                game.name === card.name
+                  ? " bg-amber-50 text-amber-800 rounded-3xl px-8 py-4 mr-2 my-2"
+                  : "bg-amber-800 text-2xl font-bold rounded-3xl text-amber-50 px-8 py-4 mr-2 my-2"
               }
             >
               <Text
                 className={
-                  game.name === pill.name
-                    ? "text-amber-800 text-lg font-bold shadow"
-                    : "text-amber-50 text-lg font-bold shadow"
+                  game.name === card.name
+                    ? "text-md font-bold text-amber-800"
+                    : "text-md font-bold text-amber-50"
                 }
               >
-                {pill.name}
+                {card.name}
               </Text>
             </Pressable>
           );

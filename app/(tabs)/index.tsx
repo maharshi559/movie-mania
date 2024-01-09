@@ -9,68 +9,66 @@ import {
   TouchableOpacity,
   View,
   Text,
+  ScrollView,
 } from "react-native";
-import * as gamesMock from "../../mocks/gameCategories.json";
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { ScrollView } from "react-native-gesture-handler";
 import { useState } from "react";
-import LottieView from "lottie-react-native";
 import Carousel from "react-native-snap-carousel";
 import { GameCard } from "../../components/GameCard";
-import Pills from "../../components/Pills";
 import { Game, GameCategory } from "../../models/game";
-
+import { gameCategories } from "../../constants/game-categories";
+import { PlusIcon } from "react-native-heroicons/outline";
+import * as utils from "./../../constants/Utils";
+import { games as mostPlayed } from "../../constants/games";
+import { ScrollableList } from "../../components/ScrollableList";
 export default function HomeScreen() {
-  const games = gamesMock.gameCategory;
-  console.log(games);
+  const games = gameCategories;
   const ios = Platform.OS == "ios";
-  const [game, setGame] = useState(games[0]);
   const { width, height } = Dimensions.get("window");
-  const image = { uri: "https://legacy.reactjs.org/logo-og.png" };
+  const recentlyPlayed = mostPlayed.reverse();
+
   return (
-    <ImageBackground source={image} className="h-full" blurRadius={30}>
+    <ImageBackground source={utils.image} className="h-full" blurRadius={30}>
       <SafeAreaView className="h-full w-full">
-        {/* <Image
-        className="h-full absolute top-0 left-0"
-        source={require("../../assets/images/main-bg.jpg")}
-      ></Image> */}
-        <View className="m-6 mt-3 items-center">
-          <Text className="text-6xl font-bold text-amber-500 mt-16">
-            Movie Mania
-          </Text>
-          <Text className="text-2xl font-bold text-yellow-600 mb-4">
-            Lets Play some Movie Games!!!
-          </Text>
+        <View className="absolute top-20 right-5">
+          <PlusIcon color={"rgb(217,119,6)"}></PlusIcon>
         </View>
-        <View className="ml-2">
-          <Pills
-            data={games}
-            onPressed={(gameCategory: GameCategory) => setGame(gameCategory)}
-          />
-        </View>
-        <View
-          className={`overflow-visible flex justify-center flex-1 ${
-            ios ? "mt-10" : ""
-          }`}
-        >
-          <View style={{ marginTop: -50 }}>
+        <ScrollView>
+          <View className="justify-center flex-row w-11/12 ml-4 items-center">
+            <View className="mt-4 items-center justify-self-center">
+              <Text className="text-3xl font-bold text-amber-50">
+                Movie Mania
+              </Text>
+              <Text className="text-lg font-bold text-amber-600 mb-4">
+                Lets Play some Movie Games!!!
+              </Text>
+            </View>
+          </View>
+          <View
+            className={`flex justify-center items-center flex-1 ${
+              ios ? "mt-20" : ""
+            }`}
+          >
             <Carousel
               vertical={false}
               containerCustomStyle={{ overflow: "visible" }}
-              data={game.games}
-              renderItem={({ item }: { item: Game }) => (
+              data={games}
+              renderItem={({ item }: { item: GameCategory }) => (
                 <GameCard isIOS={ios} game={item} />
               )}
               firstItem={0}
-              loop={true}
+              loop={false}
               inactiveSlideScale={0.75}
               inactiveSlideOpacity={0.75}
               sliderWidth={width}
               itemWidth={width * 0.63}
               slideStyle={{ display: "flex", alignItems: "center" }}
+              hasParallaxImages
             />
+            {/* </View> */}
           </View>
-        </View>
+          <ScrollableList games={mostPlayed} title="Most Played" />
+          <ScrollableList games={recentlyPlayed} title="Recently Added" />
+        </ScrollView>
       </SafeAreaView>
     </ImageBackground>
   );
